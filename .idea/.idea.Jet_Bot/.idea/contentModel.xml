@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\user\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\user\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_Jet_Bot.-768436124.00" t="ExcludeRecursive" />
+    <e p="F:\Alls\C#\Discrod_Bot\Jet_Bot" t="IncludeFlat">
+      <e p="Jet_Bot" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="dictionory.txt" t="Include" />
+        <e p="Jet-Bot-3cec51a5b6b1.json" t="Include" />
+        <e p="Jet_Bot.csproj" t="IncludeRecursive" />
+        <e p="Modules" t="Include">
+          <e p="File.cs" t="Include" />
+          <e p="Ping.cs" t="Include" />
+          <e p="Translate.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="Jet_Bot.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
+      <e p="Jet_Bot.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

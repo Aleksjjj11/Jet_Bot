@@ -24,6 +24,7 @@ namespace Jet_Bot.Modules
         [Command("UserList")]
         public async Task UserListAsync()
         {
+            //Get list users sent in text channel
             if (!UserIsGod((SocketGuildUser) Context.User)) return;
             var dmChannel = await Context.User.GetOrCreateDMChannelAsync();
             await dmChannel.SendMessageAsync(DataStorage.GetDataStorage());
@@ -50,5 +51,6 @@ namespace Jet_Bot.Modules
             var targetRole = user.Guild.GetRole(roleID);
             return user.Roles.Contains(targetRole);
         }
+         
     }
 }

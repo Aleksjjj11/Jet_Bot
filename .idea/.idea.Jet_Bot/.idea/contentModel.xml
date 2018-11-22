@@ -6,13 +6,26 @@
     <e p="F:\Alls\C#\Discrod_Bot\Jet_Bot" t="IncludeFlat">
       <e p="Jet_Bot" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Core" t="Include">
+          <e p="Accounts" t="Include">
+            <e p="UserAccount.cs" t="Include" />
+            <e p="UserAccounts.cs" t="Include" />
+          </e>
+          <e p="DataStorage.cs" t="Include" />
+        </e>
         <e p="dictionory.txt" t="Include" />
         <e p="Jet-Bot-3cec51a5b6b1.json" t="Include" />
         <e p="Jet_Bot.csproj" t="IncludeRecursive" />
         <e p="Modules" t="Include">
-          <e p="File.cs" t="Include" />
+          <e p="Admin.cs" t="Include" />
+          <e p="ChatCorrecter.cs" t="Include" />
+          <e p="DataStorage.cs" t="Include" />
+          <e p="Help.cs" t="Include" />
           <e p="Ping.cs" t="Include" />
+          <e p="Search.cs" t="Include" />
+          <e p="Secret.cs" t="Include" />
           <e p="Translate.cs" t="Include" />
+          <e p="VoiceChat.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -22,6 +35,18 @@
           </e>
         </e>
         <e p="Program.cs" t="Include" />
+        <e p="Resources" t="Include">
+          <e p="accounts.json" t="Include" />
+          <e p="Obsence.txt" t="Include" />
+          <e p="Obsence2.txt" t="Include" />
+        </e>
+        <e p="start_HP.bat" t="Include" />
+        <e p="start_PC.bat" t="Include" />
+        <e p="string.json" t="Include" />
+        <e p="Users.json" t="Include" />
+        <e p="videos" t="Include">
+          <e p="E18A26A29CFA284D7949A2DEB9BC4BE2.aac" t="Include" />
+        </e>
       </e>
       <e p="Jet_Bot.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />

@@ -15,50 +15,6 @@ namespace Jet_Bot.Modules
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
-        private static Dictionary<string, string> BanUser = new Dictionary<string, string>();
-
-        public static void AddToStorage(string key, string value)
-        {
-            BanUser.Add(key, value);
-            SaveDate();
-        }
-
-        public static string GetDataStorage()
-        {
-            return System.IO.File.ReadAllText("BanList.json");
-        }
-
-        public static int GetCount()
-        {
-            return BanUser.Count;
-        }
-        
-        static Admin()
-        {
-            if(!ValideStorageFile("BanList.json")) return;
-            string json = System.IO.File.ReadAllText("BanList.json");
-            BanUser = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-        }
-
-        public static void SaveDate()
-        {
-            //Save new data
-            string json = JsonConvert.SerializeObject(BanUser, Formatting.Indented);
-            System.IO.File.WriteAllText("BanList.json", json);
-        }
-
-        private static bool ValideStorageFile(string file)
-        {
-            if (!System.IO.File.Exists(file))
-            {
-                System.IO.File.WriteAllText(file, "");
-                SaveDate();
-                return false;
-            }
-
-            return true;
-        }
-
         [Command("Warn")]
         [RequireUserPermission(GuildPermission.Administrator)]
         [RequireBotPermission(GuildPermission.BanMembers)]
@@ -201,8 +157,6 @@ namespace Jet_Bot.Modules
                 await dmChannel.SendMessageAsync("You banned for " + count_day.ToString() + " days.\nReason: " + reason);
                 //Ban user
                 await user.Guild.AddBanAsync(user, count_day, reason);
-                //Add user in list ban
-                AddToStorage(user.Username, user.Id.ToString());
             }
             else
             {
@@ -213,28 +167,34 @@ namespace Jet_Bot.Modules
         [Command("UnBan")]
         [RequireUserPermission(GuildPermission.BanMembers)]
         [RequireBotPermission(GuildPermission.BanMembers)]
-        public async Task UnBanUserAsync(IGuildUser user)
+        public async Task UnBanUserAsync(string nameUser)
         {
-            //await Context.Client.
-            //UnBan user
-            //await Context.Guild.RemoveBanAsync(user);
-            //await user.Guild.RemoveBanAsync(user);
-
-            //Context.Client.UserUnbanned += (SocketUser)user;
+            //UnBan user 
+            var banList = Context.Guild.GetBansAsync().Result.ToArray();
+            RestBan banUser = null;
+            int i = 0;
             
-            //User notification
-            var dmChannel = await user.GetOrCreateDMChannelAsync();
-            await dmChannel.SendMessageAsync("You unbanned, thx for late. Good luck :kissing_heart: .");
-        }
-
-        [Command("BanList")]
-        [RequireUserPermission(GuildPermission.Administrator)]
-        [RequireBotPermission(GuildPermission.Administrator)]
-        public async Task BanListAsync()
-        {
-            var dmChannel = await Context.User.GetOrCreateDMChannelAsync();
-            await dmChannel.SendMessageAsync(GetDataStorage());
-        }
+            while (i < banList.Length)
+            {
+                if (banList[i].User.Username.ToUpper() == nameUser.ToUpper())
+                {
+                    banUser = banList[i];
+                    break;
+                } 
+                i++;
+            }
+            
+            if (banUser != null)
+            {
+                await Context.Guild.RemoveBanAsync(banUser.User);    
+                var dmChannel = await banUser.User.GetOrCreateDMChannelAsync();
+                await dmChannel.SendMessageAsync("You unbanned, thx for late. Good luck :kissing_heart: .");
+            }
+            else
+            {
+                await ReplyAsync("User not found.");
+            }
+        } 
 
         private bool CheckUserBeforeBan(IGuildUser user)
         {

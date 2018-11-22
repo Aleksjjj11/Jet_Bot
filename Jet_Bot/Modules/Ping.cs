@@ -25,42 +25,13 @@ namespace Jet_Bot.Modules
             
             await ReplyAsync("", false, builder.Build());
         }
-
-        [Command("Say")]
-        public async Task SayAsync()
-        {
-            await ReplyAsync("Hi", true);
-        }
-
-        [Command("To communicate")]
-        public async Task ToCommunicateAsync()
-        {
-            DateTime date = DateTime.Now;
-
-            int num = date.Millisecond % 3;
-            string message = "";
-            message += num.ToString();
-            switch (num)
-            {
-                case 0:
-                {
-                    message += " How is it going?";
-                    break;
-                }
-                case 1:
-                {
-                    message += " Long time no see!";
-                    break;
-                }
-                case 2:
-                {
-                    message += " Until we meet again!";
-                    break;
-                }
-            }
-            await ReplyAsync(message, true);
-        }
-
         
+        [Command("Trigger")]
+        public async Task TrigerAsync()
+        { 
+            await Context.Channel.SendMessageAsync(Context.IsPrivate.ToString());
+            //var dmChannel = await Context.User.GetOrCreateDMChannelAsync();
+            //await dmChannel.SendMessageAsync("Hi, how are you?");
+        }
     }
 }
